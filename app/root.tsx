@@ -14,11 +14,12 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 export const loader: LoaderFunction = () => {
-  return json({ version: process.env.VERSION });
+  return { version: process.env.VERSION };
 }
 
 export default function App() {
   const { version } = useLoaderData<{ version: string }>();
+
   return (
     <html lang="en">
       <head>
