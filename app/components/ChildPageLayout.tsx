@@ -1,6 +1,10 @@
 import { Link } from "@remix-run/react";
 
-const ChildPageLayout = ({ children }: Readonly<{ children: React.ReactNode; }>) => {
+interface ChildPageLayoutProps {
+  children: React.ReactNode;
+}
+
+const ChildPageLayout = ({ children }: ChildPageLayoutProps) => {
   return (
     <>
       <div className="mb-3">

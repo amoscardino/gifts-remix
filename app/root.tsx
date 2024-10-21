@@ -1,6 +1,5 @@
 import { LoaderFunction } from "@remix-run/node";
 import {
-  json,
   Link,
   Links,
   Meta,
@@ -13,11 +12,11 @@ import {
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-export const loader: LoaderFunction = () => {
+const loader: LoaderFunction = () => {
   return { version: process.env.VERSION };
-}
+};
 
-export default function App() {
+const App = () => {
   const { version } = useLoaderData<{ version: string }>();
 
   return (
@@ -29,36 +28,41 @@ export default function App() {
         <Links />
       </head>
 
-      <body className="container-xl min-vh-100 vstack gap-3 py-3 bg-body-tertiary">
-        <header>
-          <nav className="navbar navbar-expand-md bg-body border rounded shadow-sm">
-            <div className="container-fluid">
-              <Link to="/" className="navbar-brand ms-sm-3 mb-0 h1">
-                <i className="bi bi-gift"></i>
-                &nbsp;
-                Gifts
-              </Link>
-            </div>
-          </nav>
-        </header>
+      <body className="bg-body-tertiary">
+        <div className="container-xl min-vh-100 vstack gap-3 py-3">
+          <header>
+            <nav className="navbar navbar-expand-md bg-body border rounded shadow-sm">
+              <div className="container-fluid">
+                <Link to="/" className="navbar-brand ms-sm-3 mb-0 h1">
+                  <i className="bi bi-gift"></i>
+                  &nbsp;
+                  Gifts
+                </Link>
+              </div>
+            </nav>
+          </header>
 
-        <main className="flex-grow-1">
-          <div className="container-fluid">
-            <div className="row justify-content-center">
-              <div className="col-xl-6 col-lg-7 col-md-8 col-sm-10 col-xs-12">
-                <Outlet />
+          <main className="flex-grow-1">
+            <div className="container-fluid">
+              <div className="row justify-content-center">
+                <div className="col-xl-6 col-lg-7 col-md-8 col-sm-10 col-xs-12">
+                  <Outlet />
+                </div>
               </div>
             </div>
-          </div>
-        </main>
+          </main>
 
-        <footer className="text-center text-muted">
-          Gifts Remix {version}
-        </footer>
+          <footer className="text-center text-muted">
+            Gifts Remix {version}
+          </footer>
+        </div>
 
         <ScrollRestoration />
         <Scripts />
       </body>
     </html>
   );
-}
+};
+
+export { loader };
+export default App;
