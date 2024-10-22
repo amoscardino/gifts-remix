@@ -1,4 +1,4 @@
-import { Form } from "@remix-run/react";
+import { Form, useSubmit } from "@remix-run/react";
 import { useForm } from "react-hook-form";
 import PersonDto from "../api/models/personDto";
 
@@ -7,13 +7,23 @@ interface PersonFormProps {
 }
 
 const PersonForm = ({ person }: PersonFormProps) => {
+  const submit = useSubmit();
   const {
     register,
+    handleSubmit,
     formState: { errors }
   } = useForm<PersonDto>({ defaultValues: person });
 
+  const onSubmit = (data: PersonDto) => {
+    submit({ ...data }, { method: 'POST' });
+  };
+
+  const onDelete = () => {
+    submit({ id: person.id }, { method: 'POST', action: '/person/delete' });
+  };
+
   return (
-    <Form method="post" className="card border rounded shadow">
+    <Form onSubmit={handleSubmit(onSubmit)} method="post" className="card border rounded shadow">
       <div className="card-header">
         {person.id ? 'Edit' : 'Add'} Person
       </div>
@@ -36,17 +46,14 @@ const PersonForm = ({ person }: PersonFormProps) => {
       </div>
 
       <div className="card-footer hstack flex-row-reverse justify-content-between">
-        <button
-          type="submit"
-          className="btn btn-primary"
-        >
+        <button type="submit" className="btn btn-primary">
           Save
         </button>
 
         {person.id && (
           <button
-            type="submit"
-            formAction="/person/delete"
+            type="button"
+            onClick={onDelete}
             className="btn btn-outline-danger"
           >
             Delete

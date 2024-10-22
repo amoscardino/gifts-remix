@@ -1,20 +1,32 @@
-import { Form } from "@remix-run/react";
+import { Form, useSubmit } from "@remix-run/react";
 import { useForm } from "react-hook-form";
 import GiftDto from "../api/models/giftDto";
 import { GiftStatus } from "../api/models/giftStatus";
+import { useRef } from "react";
 
 interface GiftFormProps {
   gift: GiftDto;
 }
 
 const GiftForm = ({ gift }: GiftFormProps) => {
+  const formRef = useRef<HTMLFormElement>(null);
+  const submit = useSubmit();
   const {
     register,
+    handleSubmit,
     formState: { errors }
   } = useForm<GiftDto>({ defaultValues: gift });
 
+  const onSubmit = () => {
+    submit(new FormData(formRef.current!), { method: 'POST' });
+  };
+
+  const onDelete = () => {
+    submit({ id: gift.id }, { method: 'POST', action: '/gift/delete' });
+  };
+
   return (
-    <Form method="post" className="card border rounded shadow">
+    <Form ref={formRef} onSubmit={handleSubmit(onSubmit)} method="post" className="card border rounded shadow">
       <div className="card-header">
         {gift.id ? 'Edit' : 'Add'} Gift
       </div>
@@ -126,17 +138,14 @@ const GiftForm = ({ gift }: GiftFormProps) => {
       </div>
 
       <div className="card-footer hstack flex-row-reverse justify-content-between">
-        <button
-          type="submit"
-          className="btn btn-primary"
-        >
+        <button type="submit" className="btn btn-primary">
           Save
         </button>
 
         {gift.id && (
           <button
-            type="submit"
-            formAction="/gift/delete"
+            type="button"
+            onClick={onDelete}
             className="btn btn-outline-danger"
           >
             Delete

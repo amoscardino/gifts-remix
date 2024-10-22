@@ -25,9 +25,20 @@ const AddGift = () => {
 
 const action: ActionFunction = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData();
-  const Gift = Object.fromEntries(formData) as unknown as GiftDto;
+  const gift = {
+    id: 0,
+    person: {
+      id: +(formData.get('person.id') || '0'),
+      name: ''
+    } as PersonDto,
+    name: formData.get('name') as string,
+    status: formData.get('status') as string,
+    price: +(formData.get('price') || '0'),
+    url: formData.get('url') as string,
+    notes: formData.get('notes') as string,
+  } as GiftDto;
 
-  await createGift({ ...Gift, id: 0 });
+  await createGift(gift);
 
   return redirect('/');
 };

@@ -21,7 +21,10 @@ const EditPerson = () => {
 
 const action: ActionFunction = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData();
-  const person = Object.fromEntries(formData) as unknown as PersonDto;
+  const person = {
+    id: +(formData.get('id') || '0'),
+    name: formData.get('name') as string
+  } as PersonDto;
 
   await updatePerson(person);
 
