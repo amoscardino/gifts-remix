@@ -25,7 +25,7 @@ const loader: LoaderFunction = async () => {
   return {
     people,
     gifts
-  };
+  } as LoaderData;
 };
 
 const Index = () => {

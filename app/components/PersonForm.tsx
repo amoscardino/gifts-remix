@@ -1,4 +1,4 @@
-import { Form, useSubmit } from "@remix-run/react";
+import { useSubmit } from "@remix-run/react";
 import { useForm } from "react-hook-form";
 import PersonDto from "../api/models/personDto";
 
@@ -23,7 +23,7 @@ const PersonForm = ({ person }: PersonFormProps) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)} method="post" className="card border rounded shadow">
+    <form onSubmit={handleSubmit(onSubmit)} className="card border rounded shadow">
       <div className="card-header">
         {person.id ? 'Edit' : 'Add'} Person
       </div>
@@ -62,7 +62,7 @@ const PersonForm = ({ person }: PersonFormProps) => {
       </div>
 
       <input type="hidden" {...register('id')} />
-    </Form>
+    </form>
   );
 };
 

@@ -1,4 +1,4 @@
-import { Form, useSubmit } from "@remix-run/react";
+import { useSubmit } from "@remix-run/react";
 import { useForm } from "react-hook-form";
 import GiftDto from "../api/models/giftDto";
 import { GiftStatus } from "../api/models/giftStatus";
@@ -18,7 +18,7 @@ const GiftForm = ({ gift }: GiftFormProps) => {
   } = useForm<GiftDto>({ defaultValues: gift });
 
   const onSubmit = () => {
-    submit(new FormData(formRef.current!), { method: 'POST' });
+    submit(formRef.current!, { method: 'POST' });
   };
 
   const onDelete = () => {
@@ -26,7 +26,7 @@ const GiftForm = ({ gift }: GiftFormProps) => {
   };
 
   return (
-    <Form ref={formRef} onSubmit={handleSubmit(onSubmit)} method="post" className="card border rounded shadow">
+    <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="card border rounded shadow">
       <div className="card-header">
         {gift.id ? 'Edit' : 'Add'} Gift
       </div>
@@ -156,7 +156,7 @@ const GiftForm = ({ gift }: GiftFormProps) => {
       <input type="hidden" {...register('id')} />
       <input type="hidden" {...register('person.id')} />
       <input type="hidden" {...register('person.name')} />
-    </Form>
+    </form>
   );
 };
 
