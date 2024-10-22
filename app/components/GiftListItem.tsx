@@ -18,11 +18,9 @@ const GiftListItem = ({ gift }: GiftListItemProps) => {
           <GiftBadge status={gift.status} />
         </span>
 
-        {gift.price && (
-          <span className="text-body-secondary">
-            {numberFormat.format(gift.price)}
-          </span>
-        )}
+        <span className="text-body-secondary">
+          {numberFormat.format(gift.price || 0)}
+        </span>
       </div>
     </Link>
   );

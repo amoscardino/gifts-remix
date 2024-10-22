@@ -1,9 +1,9 @@
 import type { LoaderFunction, MetaFunction } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
-import { getGifts } from "~/api/giftApi";
+import { getGifts } from "~/api/giftApi.server";
 import GiftDto from "~/api/models/giftDto";
 import PersonDto from "~/api/models/personDto";
-import { getPeople } from "~/api/personApi";
+import { getPeople } from "~/api/personApi.server";
 import GrandTotal from "~/components/GrandTotal";
 import PersonCard from "~/components/PersonCard";
 

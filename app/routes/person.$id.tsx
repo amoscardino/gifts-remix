@@ -1,7 +1,7 @@
 import { ActionFunction, ActionFunctionArgs, LoaderFunction, LoaderFunctionArgs } from "@remix-run/node";
 import { redirect, useLoaderData } from "@remix-run/react";
 import PersonDto from "~/api/models/personDto";
-import { getPerson, updatePerson } from "~/api/personApi";
+import { getPerson, updatePerson } from "~/api/personApi.server";
 import PersonForm from "~/components/PersonForm";
 
 const loader: LoaderFunction = async ({ params }: LoaderFunctionArgs) => {

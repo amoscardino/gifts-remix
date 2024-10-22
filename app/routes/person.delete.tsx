@@ -1,6 +1,6 @@
 import { ActionFunction, ActionFunctionArgs } from "@remix-run/node";
 import { redirect } from "@remix-run/react";
-import { deletePerson } from "~/api/personApi";
+import { deletePerson } from "~/api/personApi.server";
 
 const action: ActionFunction = async ({ request }: ActionFunctionArgs) => {
   const formData = await request.formData();

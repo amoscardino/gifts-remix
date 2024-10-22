@@ -1,6 +1,6 @@
 import { ActionFunction, ActionFunctionArgs, redirect } from "@remix-run/node";
 import PersonDto from "~/api/models/personDto";
-import { createPerson } from "~/api/personApi";
+import { createPerson } from "~/api/personApi.server";
 import PersonForm from "~/components/PersonForm";
 
 const AddPerson = () => (

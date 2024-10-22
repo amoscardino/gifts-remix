@@ -1,7 +1,7 @@
 import { ActionFunction, ActionFunctionArgs, LoaderFunction, LoaderFunctionArgs } from "@remix-run/node";
 import { redirect, useLoaderData } from "@remix-run/react";
 import GiftDto from "~/api/models/giftDto";
-import { getGift, updateGift } from "~/api/giftApi";
+import { getGift, updateGift } from "~/api/giftApi.server";
 import GiftForm from "~/components/GiftForm";
 import PersonDto from "~/api/models/personDto";
 
