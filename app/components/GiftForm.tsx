@@ -55,9 +55,6 @@ const GiftForm = ({ gift }: GiftFormProps) => {
               maxLength: { value: 50, message: 'Name is too long' }
             })}
           />
-          {errors.name && (
-            <p className="text-danger">{errors.name.message}</p>
-          )}
         </div>
 
         <div className="row">
