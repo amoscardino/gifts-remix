@@ -40,9 +40,6 @@ const GiftForm = ({ gift }: GiftFormProps) => {
             readOnly
             {...register('person.name')}
           />
-          {errors.name && (
-            <p className="text-danger">{errors.name.message}</p>
-          )}
         </div>
 
         <div className="mb-3">
@@ -55,6 +52,9 @@ const GiftForm = ({ gift }: GiftFormProps) => {
               maxLength: { value: 50, message: 'Name is too long' }
             })}
           />
+          {errors.name && (
+            <p className="text-danger">{errors.name.message}</p>
+          )}
         </div>
 
         <div className="row">
